@@ -3,20 +3,20 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   namespace: directory
-  name: addressbook
+  name: elitebook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: addressbook
+      app: elitebook
   template:
     metadata:
-      name: addressbook
+      name: elitebook
       labels:
-        app: addressbook
+        app: elitebook
     spec:
       containers:
-        - name: addressbook-container
-          image: 322266404742.dkr.ecr.us-west-2.amazonaws.com/addressbook:1.0.0
+        - name: elitebook-container
+          image: 322266404742.dkr.ecr.us-west-1.amazonaws.com/elitebook:1.0.0
           ports:
             - containerPort: 8080

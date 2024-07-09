@@ -5,12 +5,12 @@ pipeline {
    choice(name: 'ecr_tag',choices: ['1.0.0','1.1.0','1.2.0'], description: 'Choose the ecr tag version for the build')
        }
 tools {
-    maven "Maven-3.9.8"
+    maven "maven"
     }
     stages {
       stage('1. Git Checkout') {
         steps {
-          git branch: 'main', credentialsId: 'Github-pat', url: 'https://github.com/ndiforfusi/addressbook.git'
+          git branch: 'master', credentialsId: 'Github-pat', url: 'https://github.com/elitessystems01/elitebook.git'
         }
       }
       stage('2. Build with maven') { 
@@ -25,8 +25,8 @@ tools {
          def scannerHome = tool 'SonarQube-Scanner-6.0.0';
          withSonarQubeEnv("sonarqube-integration") {
          sh "${tool("SonarQube-Scanner-6.0.0")}/bin/sonar-scanner  \
-           -Dsonar.projectKey=addressbook-application \
-           -Dsonar.projectName='addressbook-application' \
+           -Dsonar.projectKey=elitebook-application \
+           -Dsonar.projectName='elitebook-application' \
            -Dsonar.host.url=https://sonar.shiawslab.com \
            -Dsonar.token=$SONAR_TOKEN \
            -Dsonar.sources=src/main/java/ \
@@ -37,10 +37,10 @@ tools {
       }
       stage('4. Docker image build') {
          steps{
-          sh "aws ecr get-login-password --region us-west-2 | sudo docker login --username AWS --password-stdin ${params.aws_account}.dkr.ecr.us-west-2.amazonaws.com"
-          sh "sudo docker build -t addressbook ."
-          sh "sudo docker tag addressbook:latest ${params.aws_account}.dkr.ecr.us-west-2.amazonaws.com/addressbook:${params.ecr_tag}"
-          sh "sudo docker push ${params.aws_account}.dkr.ecr.us-west-2.amazonaws.com/addressbook:${params.ecr_tag}"
+          sh "aws ecr get-login-password --region us-west-1 | sudo docker login --username AWS --password-stdin ${params.aws_account}.dkr.ecr.us-west-1.amazonaws.com"
+          sh "sudo docker build -t elitebook ."
+          sh "sudo docker tag elitebook:latest ${params.aws_account}.dkr.ecr.us-west-1.amazonaws.com/elitebook:${params.ecr_tag}"
+          sh "sudo docker push ${params.aws_account}.dkr.ecr.us-west-1.amazonaws.com/elitebook:${params.ecr_tag}"
          }
        }
       stage('5. Application deployment in eks') {
@@ -63,7 +63,7 @@ tools {
       stage ('7. Email Notification') {
          steps{
          mail bcc: 'fusisoft@gmail.com', body: '''Build is Over. Check the application using the URL below. 
-         https//abook.shiawslab.com/addressbook-1.0
+         https//abook.shiawslab.com/elitebook-1.0
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,
