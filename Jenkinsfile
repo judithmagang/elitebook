@@ -43,6 +43,7 @@ tools {
           sh "sudo docker push ${params.aws_account}.dkr.ecr.us-east-1.amazonaws.com/elitebook:${params.ecr_tag}"
          }
        }
+       /*
       stage('5. Application deployment in eks') {
         steps{
           kubeconfig(caCertificate: '',credentialsId: 'k8s-kubeconfig', serverUrl: '') {
@@ -50,7 +51,6 @@ tools {
           }
          }
        }
-       /*
       stage('6. Monitoring solution deployment in eks') {
         steps{
           kubeconfig(caCertificate: '',credentialsId: 'k8s-kubeconfig', serverUrl: '') {
