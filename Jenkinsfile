@@ -1,8 +1,8 @@
 pipeline {
  agent { node { label "maven-sonarqube-node" } }
  parameters   {
-   choice(name: 'aws_account',choices: ['322266404742', '4568366404742', '922266408974'], description: 'aws account hosting image registry')
-   choice(name: 'ecr_tag',choices: ['1.0.0','1.1.0','1.2.0'], description: 'Choose the ecr tag version for the build')
+   string(name: 'aws_account', defaultValue: '322266404742', description: 'aws account hosting image registry')
+   string(name: 'ecr_tag', defaultValue: '1.0.0', description: 'Choose the ecr tag version for the build')
        }
 tools {
     maven "maven"
@@ -25,10 +25,10 @@ tools {
          def scannerHome = tool 'SonarQube-Scanner';
          withSonarQubeEnv("sonarqube-integration") {
          sh "${tool("SonarQube-Scanner")}/bin/sonar-scanner  \
-           -Dsonar.projectKey=elitebook-application \
-           -Dsonar.projectName='elitebook-application' \
-           -Dsonar.host.url=https://sonar.shiawslab.com \
-           -Dsonar.token=$SONAR_TOKEN \
+           -Dsonar.projectKey=elitebook \
+           -Dsonar.projectName='elitebook' \
+           -Dsonar.host.url=http://18.116.72.231:9000 \
+           -Dsonar.token=sqp_bd79ca25f85d7570e1754db988ef31ecba5e4e71
            -Dsonar.sources=src/main/java/ \
            -Dsonar.java.binaries=target/classes"
           }
@@ -50,6 +50,7 @@ tools {
           }
          }
        }
+       /*
       stage('6. Monitoring solution deployment in eks') {
         steps{
           kubeconfig(caCertificate: '',credentialsId: 'k8s-kubeconfig', serverUrl: '') {
@@ -60,6 +61,7 @@ tools {
           }
          }
        }
+       
       stage ('7. Email Notification') {
          steps{
          mail bcc: 'fusisoft@gmail.com', body: '''Build is Over. Check the application using the URL below. 
@@ -71,7 +73,9 @@ tools {
       }
     }
  }
+ */
 }
+
 
 
 
