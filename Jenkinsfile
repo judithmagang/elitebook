@@ -28,7 +28,7 @@ tools {
            -Dsonar.projectKey=elitebook \
            -Dsonar.projectName='elitebook' \
            -Dsonar.host.url=http://18.116.72.231:9000 \
-           -Dsonar.token=sonar-token-abook
+           -Dsonar.token=sqp_bd79ca25f85d7570e1754db988ef31ecba5e4e71
            -Dsonar.sources=src/main/java/ \
            -Dsonar.java.binaries=target/classes"
           }
