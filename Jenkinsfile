@@ -10,7 +10,7 @@ tools {
     stages {
       stage('1. Git Checkout') {
         steps {
-          git branch: 'dev', credentialsId: 'githubpriv', url: 'https://github.com/elitessystems01/elitebook.git'
+          git branch: 'dev', credentialsId: 'elitesgithub', url: 'https://github.com/elitessystems01/elitebook.git'
         }
       }
       stage('2. Build with maven') { 
@@ -25,10 +25,11 @@ tools {
          def scannerHome = tool 'SonarQube-Scanner';
          withSonarQubeEnv("sonarqube-integration") {
          sh "${tool("SonarQube-Scanner")}/bin/sonar-scanner  \
+          mvn clean verify sonar:sonar \
            -Dsonar.projectKey=elitebook \
            -Dsonar.projectName='elitebook' \
-           -Dsonar.host.url=http://18.116.72.231:9000 \
-           -Dsonar.token=sqp_bd79ca25f85d7570e1754db988ef31ecba5e4e71
+           -Dsonar.host.url=http://3.85.226.149:9000 \
+           -Dsonar.token=sqp_548581f4ee3314dff3cdb7bbb352ba76c9d767f2
            -Dsonar.sources=src/main/java/ \
            -Dsonar.java.binaries=target/classes"
           }
@@ -37,10 +38,10 @@ tools {
       }
       stage('4. Docker image build') {
          steps{
-          sh "aws ecr get-login-password --region us-west-1 | sudo docker login --username AWS --password-stdin ${params.aws_account}.dkr.ecr.us-west-1.amazonaws.com"
+          sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 851725403938.dkr.ecr.us-east-1.amazonaws.com"
           sh "sudo docker build -t elitebook ."
-          sh "sudo docker tag elitebook:latest ${params.aws_account}.dkr.ecr.us-west-1.amazonaws.com/elitebook:${params.ecr_tag}"
-          sh "sudo docker push ${params.aws_account}.dkr.ecr.us-west-1.amazonaws.com/elitebook:${params.ecr_tag}"
+          sh "sudo docker tag elitebook:latest 851725403938.dkr.ecr.us-east-1.amazonaws.com/elitebook:latest"
+          sh "sudo docker push 851725403938.dkr.ecr.us-east-1.amazonaws.com/elitebook:latest}"
          }
        }
       stage('5. Application deployment in eks') {
