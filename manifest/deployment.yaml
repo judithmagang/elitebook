@@ -20,3 +20,4 @@ spec:
           image: 851725403938.dkr.ecr.us-east-1.amazonaws.com/elitebook:1.0.0
           ports:
             - containerPort: 8080
+            

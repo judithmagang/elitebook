@@ -28,3 +28,4 @@ spec:
                 name: elitebook-service
                 port:
                   number: 8080
+
