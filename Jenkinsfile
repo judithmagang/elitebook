@@ -1,7 +1,7 @@
 pipeline {
  agent { node { label "maven-sonarqube-node" } }
  parameters   {
-   string(name: 'aws_account', defaultValue: '322266404742', description: 'aws account hosting image registry')
+   string(name: 'aws_account', defaultValue: '851725403938', description: 'aws account hosting image registry')
    string(name: 'ecr_tag', defaultValue: '1.0.0', description: 'Choose the ecr tag version for the build')
        }
 tools {
@@ -38,10 +38,10 @@ tools {
       }
       stage('4. Docker image build') {
          steps{
-          sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 851725403938.dkr.ecr.us-east-1.amazonaws.com"
+          sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin ${params.aws_account}.dkr.ecr.us-east-1.amazonaws.com"
           sh "sudo docker build -t elitebook ."
-          sh "sudo docker tag elitebook:latest 851725403938.dkr.ecr.us-east-1.amazonaws.com/elitebook:latest"
-          sh "sudo docker push 851725403938.dkr.ecr.us-east-1.amazonaws.com/elitebook:latest}"
+          sh "sudo docker tag elitebook:latest ${params.aws_account}.dkr.ecr.us-east-1.amazonaws.com/elitebook:${params.ecr_tag}"
+          sh "sudo docker push ${params.aws_account}.dkr.ecr.us-east-1.amazonaws.com/elitebook:${params.ecr_tag}"
          }
        }
       stage('5. Application deployment in eks') {
