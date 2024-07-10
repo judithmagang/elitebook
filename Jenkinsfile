@@ -10,7 +10,7 @@ tools {
     stages {
       stage('1. Git Checkout') {
         steps {
-          git branch: 'dev', credentialsId: 'githubpriv', url: 'https://github.com/elitessystems01/elitebook.git'
+          git branch: 'dev', credentialsId: 'githubpriv', url: 'https://github.com/judithmagang/elitebook.git'
         }
       }
       stage('2. Build with maven') { 
@@ -28,7 +28,7 @@ tools {
            -Dsonar.projectKey=elitebook \
            -Dsonar.projectName='elitebook' \
            -Dsonar.host.url=http://18.116.72.231:9000 \
-           -Dsonar.token=sqp_bd79ca25f85d7570e1754db988ef31ecba5e4e71
+           -Dsonar.token=sonar-token-abook
            -Dsonar.sources=src/main/java/ \
            -Dsonar.java.binaries=target/classes"
           }
