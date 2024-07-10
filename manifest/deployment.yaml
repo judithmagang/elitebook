@@ -16,7 +16,7 @@ spec:
         app: elitebook
     spec:
       containers:
-        - name: elitebook-container
-          image: 322266404742.dkr.ecr.us-west-1.amazonaws.com/elitebook:1.0.0
+        - name: elitebook
+          image: 851725403938.dkr.ecr.us-east-1.amazonaws.com/elitebook:1.0.0
           ports:
             - containerPort: 8080

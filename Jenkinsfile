@@ -56,8 +56,6 @@ pipeline {
             }
         }
         
-        /* Uncomment and complete the following stages if needed
-        
         stage('5. Application deployment in EKS') {
             steps {
                 kubeconfig(caCertificate: '', credentialsId: 'k8s-kubeconfig', serverUrl: '') {
@@ -65,7 +63,7 @@ pipeline {
                 }
             }
         }
-        
+        /*
         stage('6. Monitoring solution deployment in EKS') {
             steps {
                 kubeconfig(caCertificate: '', credentialsId: 'k8s-kubeconfig', serverUrl: '') {
