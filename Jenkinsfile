@@ -19,7 +19,7 @@ tools {
          }
        }
       stage('3. SonarQube analysis') {
-      environment {SONAR_TOKEN = credentials('sonar-token-abook')}
+      environment {SONAR_TOKEN = credentials('sonar-credentials')}
       steps {
        script {
          def scannerHome = tool 'SonarQube-Scanner';
@@ -29,7 +29,7 @@ tools {
            -Dsonar.projectKey=elitebook \
            -Dsonar.projectName='elitebook' \
            -Dsonar.host.url=http://3.85.226.149:9000 \
-           -Dsonar.token=sqp_548581f4ee3314dff3cdb7bbb352ba76c9d767f2
+           -Dsonar.token=$SONAR_TOKEN
            -Dsonar.sources=src/main/java/ \
            -Dsonar.java.binaries=target/classes"
           }
@@ -73,7 +73,6 @@ tools {
          +1 (313) 413-1477''', cc: 'fusisoft@gmail.com', from: '', replyTo: '', subject: 'Application was Successfully Deployed!!', to: 'fusisoft@gmail.com'
       }
     }
- }
  */
 }
 
