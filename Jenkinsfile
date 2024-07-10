@@ -22,9 +22,9 @@ tools {
       environment {SONAR_TOKEN = credentials('sonar-token-abook')}
       steps {
        script {
-         def scannerHome = tool 'SonarQube-Scanner-6.0.0';
+         def scannerHome = tool 'SonarQube-Scanner';
          withSonarQubeEnv("sonarqube-integration") {
-         sh "${tool("SonarQube-Scanner-6.0.0")}/bin/sonar-scanner  \
+         sh "${tool("SonarQube-Scanner")}/bin/sonar-scanner  \
            -Dsonar.projectKey=elitebook-application \
            -Dsonar.projectName='elitebook-application' \
            -Dsonar.host.url=https://sonar.shiawslab.com \
