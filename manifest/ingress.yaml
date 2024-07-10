@@ -7,13 +7,13 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-1:322266404742:certificate/bc574743-1292-4051-8152-77e1646f6655
     #   alb.ingress.kubernetes.io/subnets:
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/healthcheck-port: "443"
-    alb.ingress.kubernetes.io/ssl-redirect: "443"
+    alb.ingress.kubernetes.io/healthcheck-port: "80"
+    alb.ingress.kubernetes.io/ssl-redirect: "80"
     alb.ingress.kubernetes.io/healthcheck-path: /elitebook-1.0
     alb.ingress.kubernetes.io/success-codes: 200,302
-    alb.ingress.kubernetes.io/load-balancer-name: elitebook-server-ip
+    alb.ingress.kubernetes.io/load-balancer-name: my-alb
     alb.ingress.kubernetes.io/target-group-attributes: deregistration_delay.timeout_seconds=30
 spec:
   ingressClassName: alb
@@ -27,5 +27,5 @@ spec:
               service:
                 name: elitebook-service
                 port:
-                  number: 8080
+                  number: 80
 
