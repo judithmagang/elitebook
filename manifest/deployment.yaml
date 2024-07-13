@@ -73,6 +73,6 @@ spec:
     spec:
       containers:
         - name: judebook-container
-          image: 058264304686.dkr.ecr.us-west-2.amazonaws.com/judebook:latest
+          image: 058264304686.dkr.ecr.us-west-2.amazonaws.com/judebook:1.0.0
           ports:
             - containerPort: 8080
