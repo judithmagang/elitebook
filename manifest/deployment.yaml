@@ -1,22 +1,78 @@
 # Complete Manifest Where in single yml we defined Deployment & Service for SpringApp & PVC(with default  StorageClass),ReplicaSet & Service For Mongo.
+# Complete Manifest Where in single yml we defined Deployment & Service for SpringApp & PVC(with default  StorageClass),ReplicaSet & Service For Mongo.
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+  namespace: directory
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  name: mongo
   namespace: directory
-  name: elitebook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: elitebook
+      app: mongo
   template:
     metadata:
-      name: elitebook
       labels:
-        app: elitebook
+        app: mongo
     spec:
       containers:
-        - name: elitebook-container
-          image: 322266404742.dkr.ecr.us-west-1.amazonaws.com/elitebook:1.0.0
+        - name: mongo
+          image: mongo:4.2.8
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - mountPath: /data/db
+              name: mongo-storage
+      volumes:
+        - name: mongo-storage
+          persistentVolumeClaim:
+            claimName: mongo-pvc
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo-service
+  namespace: directory
+spec:
+  selector:
+    app: mongo
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: directory
+  name: judebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: judebook
+  template:
+    metadata:
+      name: judebook
+      labels:
+        app: judebook
+    spec:
+      containers:
+        - name: judebook-container
+          image: 058264304686.dkr.ecr.us-west-2.amazonaws.com/judebook:latest
           ports:
             - containerPort: 8080
