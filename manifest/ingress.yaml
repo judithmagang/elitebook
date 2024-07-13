@@ -5,7 +5,7 @@ metadata:
   namespace: directory
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/certificate-arn: dualstack.a75d293e7820f4da2a356e94577cada3-74605622.eu-west-2.elb.amazonaws.com
+    alb.ingress.kubernetes.io/certificate-arn: dualstack.dev-alb-161236527.eu-west-2.elb.amazonaws.com.
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-port: "80"
