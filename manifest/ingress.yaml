@@ -18,7 +18,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: @judebook.@judemn.net 
+    - host: judebook.@judemn.net 
       http:
         paths:
           - path: /judebook-1.0.0
