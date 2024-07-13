@@ -6,7 +6,7 @@
     <artifactId>judebook</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
-    <name>judebook demo</name>
+    <name>judebook </name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
