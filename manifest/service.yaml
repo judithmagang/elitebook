@@ -11,6 +11,25 @@ spec:
       port: 8080
       targetPort: 8080
   type: LoadBalancer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: judebook-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: arn:aws:elasticloadbalancing:eu-west-2:058264304686:loadbalancer/app/dev-alb/e6c57d3db2ffeb38
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: judebook-service
+            port:
+              number: 8080
 
 #apiVersion: networking.k8s.io/v1
 # kind: Ingress
