@@ -11,8 +11,7 @@ spec:
       port: 8080
       targetPort: 8080
   type: LoadBalancer
-  annotations:
-    alb.ingress.kubernetes.io/load-balancer-name: dev-alb
+    labels: dev-alb
 
 #apiVersion: networking.k8s.io/v1
 # kind: Ingress
