@@ -22,15 +22,15 @@ tools {
       environment {SONAR_TOKEN = credentials('sonar-credentials')}
       steps {
        script {
-         def scannerHome = tool 'SonarQube-Scanner';
-         withSonarQubeEnv("sonarqube-integration") {
-         sh "${tool("SonarQube-Scanner")}/bin/sonar-scanner  \
-           -Dsonar.projectKey=judebook \
-           -Dsonar.projectName='judebook' \
-           -Dsonar.host.url=http://18.117.82.24:9000/ \
-           -Dsonar.token=$SONAR_TOKEN \
-           -Dsonar.sources=src/main/java/ \
-           -Dsonar.java.binaries=target/classes"
+         def scannerHome = tool 'SonarQube-Scanner'
+                    withSonarQubeEnv("sonarqube-integration") {
+                        sh "${scannerHome}/bin/sonar-scanner \
+                            -Dsonar.projectKey=judebook \
+                            -Dsonar.projectName='judebook' \
+                            -Dsonar.host.url=http://18.117.82.24:9000 \
+                            -Dsonar.token=${SONAR_TOKEN} \
+                            -Dsonar.sources=src/main/java/ \
+                            -Dsonar.java.binaries=target/classes"
           }
          }
        }
