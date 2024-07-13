@@ -10,7 +10,7 @@ tools {
     stages {
       stage('1. Git Checkout') {
         steps {
-          git branch: 'master', credentialsId: 'github', url: 'https://github.com/judithmagang/judebook.git'
+          git branch: 'master', credentialsId: 'github', url: 'https://github.com/judithmagang/elitebook.git'
         }
       }
       stage('2. Build with maven') { 
