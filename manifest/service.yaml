@@ -10,10 +10,10 @@ spec:
     - protocol: TCP
       port: 8080
       targetPort: 8080
-  type: LoadBalancer
+  type: loadBalancer
 ---
 apiVersion: networking.k8s.io/v1
-kind: Ingress
+kind: ingress
 metadata:
   name: judebook-ingress
   annotations:
