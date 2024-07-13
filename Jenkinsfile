@@ -1,7 +1,7 @@
 pipeline {
  agent { node { label "maven-sonarqube-node" } }
  parameters   {
-   string(name: 'aws_account', defaultValue: '851725403938', description: 'aws account hosting image registry')
+   string(name: 'aws_account', defaultValue: '058264304686', description: 'aws account hosting image registry')
    string(name: 'ecr_tag', defaultValue: '1.0.0', description: 'Choose the ecr tag version for the build')
        }
 tools {
@@ -10,7 +10,7 @@ tools {
     stages {
       stage('1. Git Checkout') {
         steps {
-          git branch: 'master', credentialsId: 'githubpriv', url: 'https://github.com/judithmagang/elitebook.git'
+          git branch: 'master', credentialsId: 'githubpriv', url: 'https://github.com/judithmagang/judebook.git'
         }
       }
       stage('2. Build with maven') { 
@@ -37,10 +37,9 @@ tools {
       }
       stage('4. Docker image build') {
          steps{
-          sh "aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin ${params.aws_account}.dkr.ecr.eu-west-2.amazonaws.com"
-          sh "sudo docker build -t elitebook ."
-          sh "sudo docker tag elitebook:latest ${params.aws_account}.dkr.ecr.eu-west-2.amazonaws.com/elitebook:${params.ecr_tag}"
-          sh "sudo docker push ${params.aws_account}.dkr.ecr.eu-west-2.amazonaws.com/elitebook:${params.ecr_tag}"
+          sh "aws ecr get-login-password --region us-west-2 | sudo docker login --username AWS --password-stdin ${params.aws_account}.dkr.ecr.us-west-2.amazonaws.com"
+          sh "sudo docker build -t jude-ecr . ${params.aws_account} docker tag jude-ecr:latest ${params.ecr_tag}.dkr.ecr.us-west-2.amazonaws.com/jude-ecr:latest"
+          sh "sudo docker push ${params.aws_account}.dkr.ecr.us-west-2.amazonaws.com/jude-ecr:${params.ecr_tag}"
          }
        }
       stage('5. Application deployment in eks') {
@@ -65,7 +64,7 @@ tools {
       stage ('7. Email Notification') {
          steps{
          mail bcc: 'fusisoft@gmail.com', body: '''Build is Over. Check the application using the URL below. 
-         https//abook.shiawslab.com/elitebook-1.0
+         https//abook.shiawslab.com/judebook-1.0
          Let me know if the changes look okay.
          Thanks,
          Dominion System Technologies,
