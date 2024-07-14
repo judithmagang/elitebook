@@ -19,7 +19,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: 'dualstack.dev-alb-1175263708.eu-west-2.elb.amazonaws.com.'
+  - host: 'judebook.judemag.com'
     http:
       paths:
       - path: /

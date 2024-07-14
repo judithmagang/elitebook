@@ -17,7 +17,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: 'dualstack.dev-alb-1175263708.eu-west-2.elb.amazonaws.com.'
+    - host: 'judebook.judemag.com'
       http:
         paths:
           - path: /judebook-1.0.0
