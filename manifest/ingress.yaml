@@ -5,7 +5,7 @@ metadata:
   namespace: directory
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/certificate-arn: dualstack.dev-alb-161236527.eu-west-2.elb.amazonaws.com.
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:elasticloadbalancing:eu-west-2:058264304686:loadbalancer/app/dev-alb/e6444b26dc64747a
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-port: "80"
@@ -17,7 +17,7 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-    - host: 'judebook.judemag.com'
+    - host: 'dualstack.dev-alb-1175263708.eu-west-2.elb.amazonaws.com.'
       http:
         paths:
           - path: /judebook-1.0.0

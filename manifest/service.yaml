@@ -19,7 +19,7 @@ metadata:
     kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
-  - host: dualstack.a75d293e7820f4da2a356e94577cada3-74605622.eu-west-2.elb.amazonaws.com
+  - host: dualstack.dev-alb-1175263708.eu-west-2.elb.amazonaws.com.
     http:
       paths:
       - path: /
