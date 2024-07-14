@@ -22,7 +22,7 @@ spec:
   - host: 'judebook.judemag.com'
     http:
       paths:
-      - path: /
+      - path: /judebook-1.0
         pathType: Prefix
         backend:
           service:
