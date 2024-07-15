@@ -5,8 +5,8 @@ metadata:
   namespace: directory
   annotations:
     alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:058264304686:certificate/3fc6894a-eebe-47ba-ae8a-19f3695d92b0
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 443}]'
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-west-2:058264304686:certificate/744e9877-d1a5-455f-bcf8-2e11a32a08fe
+    alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/healthcheck-port: "443"
     alb.ingress.kubernetes.io/ssl-redirect: "443"
