@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: judebook-service
-  namespace: directory
+  namespace: directory1
 spec:
   selector:
     app: judebook
