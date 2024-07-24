@@ -19,7 +19,7 @@ metadata:
   name: mongo
   namespace: directory1
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: mongo
@@ -61,7 +61,7 @@ metadata:
   namespace: directory1
   name: judebook
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: judebook
