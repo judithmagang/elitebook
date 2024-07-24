@@ -19,7 +19,7 @@ metadata:
   name: mongo
   namespace: directory1
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: mongo
