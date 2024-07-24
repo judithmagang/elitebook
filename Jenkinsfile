@@ -27,7 +27,7 @@ tools {
          sh "${tool("SonarQube-Scanner")}/bin/sonar-scanner -X \
            -Dsonar.projectName='judebook' \
            -Dsonar.projectKey=judebook \
-           -Dsonar.host.url=http://3.22.175.213:9000/ \
+           -Dsonar.host.url=http://3.129.52.120:9000/ \
            -Dsonar.token=${SONAR_TOKEN} \
            -Dsonar.sources=src/main/java/ \
            -Dsonar.java.binaries=target/classes"
